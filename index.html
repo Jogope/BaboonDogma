@@ -5,19 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Baboon Dogma | Dominus Manager</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg: #09090b;
-      --card-bg: rgba(18, 18, 22, 0.85);
-      --border: rgba(212, 175, 55, 0.22);
-      --border-hover: rgba(212, 175, 55, 0.5);
+      --bg: #070709;
+      --card-bg: rgba(15, 15, 20, 0.85);
+      --border: rgba(212, 175, 55, 0.28);
+      --border-hover: rgba(212, 175, 55, 0.7);
       --gold: #d4af37;
       --gold-light: #f5d77f;
-      --text: #d1d5db;
-      --text-muted: #9ca3af;
+      --gold-glow: rgba(212, 175, 55, 0.25);
+      --crimson: #a11d24;
+      --text: #d8dbe0;
+      --text-muted: #9ba1ad;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,25 +44,31 @@
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 1060px;
       margin: 0 auto;
       padding: 0 24px;
       position: relative;
       z-index: 1;
     }
 
-    /* Cabecera */
+    /* Cabecera superior */
     header {
-      padding: 24px 0;
+      padding: 30px 0 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .header-logo {
-      height: 46px;
+      height: 64px;
       width: auto;
       object-fit: contain;
+      filter: drop-shadow(0 2px 10px rgba(0,0,0,0.8));
+      transition: transform 0.2s ease;
+    }
+
+    .header-logo:hover {
+      transform: scale(1.03);
     }
 
     .lang-switcher {
@@ -70,6 +78,7 @@
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 4px 8px;
+      backdrop-filter: blur(10px);
     }
 
     .lang-btn {
@@ -80,54 +89,106 @@
       font-weight: 700;
       font-size: 0.85rem;
       cursor: pointer;
-      padding: 4px 10px;
+      padding: 5px 12px;
       border-radius: 14px;
       transition: all 0.2s ease;
     }
 
     .lang-btn.active {
       background: var(--gold);
-      color: #000;
+      color: #050507;
+      box-shadow: 0 0 12px var(--gold-glow);
     }
 
     /* Hero */
     .hero {
       text-align: center;
-      padding: 30px 0 10px;
+      padding: 30px 0 24px;
     }
 
     .game-logo {
-      max-width: 440px;
-      width: 85%;
+      max-width: 560px;
+      width: 90%;
       height: auto;
-      margin: 0 auto 16px;
+      margin: 0 auto 18px;
       display: block;
-      filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.2));
+      filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.35));
+      animation: floatLogo 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatLogo {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-4px); }
     }
 
     .hero-subtitle {
       font-family: 'Cinzel', serif;
       color: var(--gold-light);
       font-size: 1.15rem;
-      letter-spacing: 1px;
-      max-width: 620px;
-      margin: 0 auto 30px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      max-width: 720px;
+      margin: 0 auto 35px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
     }
 
-    /* Vídeo Tráiler */
-    .video-section {
-      margin: 10px auto 40px;
-      max-width: 850px;
+    /* Marco Cinematográfico del Tráiler */
+    .trailer-wrapper {
+      max-width: 920px;
+      margin: 0 auto 50px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #0f1015;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.12);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .trailer-header {
+      background: linear-gradient(180deg, #181920 0%, #111217 100%);
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+    }
+
+    .trailer-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--crimson);
+      border-radius: 50%;
+      box-shadow: 0 0 8px #ff2a2a;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.6; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); }
+      100% { opacity: 0.6; transform: scale(0.9); }
+    }
+
+    .trailer-badge {
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.75rem;
     }
 
     .video-frame {
       position: relative;
       padding-bottom: 56.25%;
       height: 0;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85);
       background: #000;
     }
 
@@ -137,142 +198,170 @@
       left: 0;
       width: 100%;
       height: 100%;
+      border: none;
     }
 
     /* Botón Steam */
     .cta-area {
       text-align: center;
-      margin-bottom: 70px;
+      margin-bottom: 80px;
     }
 
     .btn-steam {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      background: linear-gradient(135deg, #171a21 0%, #1b2838 100%);
+      gap: 14px;
+      background: linear-gradient(135deg, #171a21 0%, #202b3b 100%);
       color: #fff;
       text-decoration: none;
-      padding: 16px 36px;
+      padding: 18px 44px;
       border-radius: 8px;
       font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: 1px;
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 1.5px;
+      border: 1px solid var(--gold);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(212, 175, 55, 0.2);
       transition: all 0.3s ease;
     }
 
     .btn-steam:hover {
-      border-color: var(--gold);
-      transform: translateY(-2px);
-      box-shadow: 0 15px 30px rgba(212, 175, 55, 0.25);
+      transform: translateY(-3px) scale(1.02);
+      border-color: var(--gold-light);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 35px rgba(212, 175, 55, 0.4);
     }
 
     /* Sección de Características */
-    .section-title {
+    .section-eyebrow {
       font-family: 'Cinzel', serif;
       color: var(--gold);
-      font-size: 0.9rem;
-      letter-spacing: 2px;
+      font-size: 0.85rem;
+      letter-spacing: 3px;
       text-transform: uppercase;
       text-align: center;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .section-heading {
       font-family: 'Cinzel', serif;
-      font-size: 1.8rem;
+      font-size: 2.1rem;
       color: #fff;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 45px;
+      text-shadow: 0 2px 15px rgba(0,0,0,0.8);
     }
 
     .features-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      margin-bottom: 70px;
+      gap: 24px;
+      margin-bottom: 80px;
     }
 
     .feature-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 30px;
-      transition: all 0.25s ease;
-      backdrop-filter: blur(8px);
+      padding: 34px 30px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
     }
 
     .feature-card:hover {
       border-color: var(--border-hover);
-      transform: translateY(-3px);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 25px rgba(212, 175, 55, 0.15);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-num {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
     }
 
     .feature-card h3 {
       font-family: 'Cinzel', serif;
-      color: var(--gold-light);
-      font-size: 1.25rem;
-      margin-bottom: 12px;
+      color: #fff;
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
     }
 
     .feature-card p {
-      font-size: 0.95rem;
+      font-size: 0.98rem;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     /* Sobre el Estudio */
     .studio-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 40px 30px;
+      border-radius: 16px;
+      padding: 50px 36px 40px;
       text-align: center;
-      margin-bottom: 60px;
-      backdrop-filter: blur(8px);
+      margin-bottom: 70px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      position: relative;
     }
 
     .studio-logo-inner {
-      height: 60px;
+      height: 90px;
       width: auto;
-      margin-bottom: 16px;
-    }
-
-    .studio-card h2 {
-      font-family: 'Cinzel', serif;
-      color: #fff;
-      font-size: 1.8rem;
-      margin-bottom: 16px;
+      margin-bottom: 24px;
+      filter: drop-shadow(0 4px 15px rgba(0,0,0,0.8));
     }
 
     .studio-card p {
-      max-width: 650px;
-      margin: 0 auto 30px;
-      font-size: 1.05rem;
+      max-width: 700px;
+      margin: 0 auto 36px;
+      font-size: 1.1rem;
       color: var(--text);
+      line-height: 1.7;
     }
 
     .badges {
       display: flex;
       justify-content: center;
-      gap: 40px;
+      gap: 50px;
       border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 26px;
+      padding-top: 30px;
     }
 
     .badge-item strong {
       display: block;
       font-family: 'Cinzel', serif;
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       color: var(--gold-light);
       margin-bottom: 4px;
+      letter-spacing: 1px;
     }
 
     .badge-item span {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       color: var(--text-muted);
     }
 
@@ -281,75 +370,85 @@
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 30px;
+      padding: 36px;
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 70px;
+      backdrop-filter: blur(10px);
     }
 
     .email-box {
       display: inline-flex;
       align-items: center;
-      background: rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.5);
       border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 10px 16px;
-      margin-top: 14px;
-      gap: 12px;
+      border-radius: 8px;
+      padding: 12px 20px;
+      margin-top: 16px;
+      gap: 16px;
     }
 
     .email-box span {
       font-family: monospace;
       color: var(--gold-light);
-      font-size: 1rem;
+      font-size: 1.05rem;
+      letter-spacing: 0.5px;
     }
 
     .btn-copy {
       background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 4px 10px;
-      border-radius: 4px;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      padding: 6px 14px;
+      border-radius: 6px;
       cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
       font-size: 0.8rem;
+      letter-spacing: 1px;
       transition: all 0.2s;
     }
 
     .btn-copy:hover {
       background: var(--gold);
-      color: #000;
+      color: #050507;
+      box-shadow: 0 0 12px var(--gold-glow);
     }
 
     /* Footer */
     footer {
       border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 30px 0;
+      padding: 35px 0 45px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
     }
 
     .footer-icons {
       display: flex;
-      gap: 18px;
+      gap: 22px;
     }
 
     .footer-icons a {
       color: var(--text-muted);
-      transition: color 0.2s;
+      transition: all 0.2s;
       display: flex;
       align-items: center;
     }
 
     .footer-icons a:hover {
       color: var(--gold);
+      transform: translateY(-2px);
     }
 
     @media (max-width: 768px) {
       .features-grid { grid-template-columns: 1fr; }
-      .badges { flex-direction: column; gap: 18px; }
-      footer { flex-direction: column; gap: 16px; text-align: center; }
+      .badges { flex-direction: column; gap: 20px; }
+      footer { flex-direction: column; gap: 18px; text-align: center; }
+      .header-logo { height: 48px; }
+      .game-logo { max-width: 400px; }
+      .email-box { flex-direction: column; width: 100%; }
     }
   </style>
 </head>
@@ -358,6 +457,7 @@
   <canvas id="embers-canvas"></canvas>
 
   <div class="container">
+    <!-- Header -->
     <header>
       <img src="logo-studio.png" alt="Baboon Dogma" class="header-logo" onerror="this.style.display='none'">
       <div class="lang-switcher">
@@ -368,16 +468,24 @@
 
     <!-- Hero -->
     <section class="hero">
-      <img src="logo-game.png" alt="Dominus Manager" class="game-logo" onerror="this.outerHTML='<h1 style=\'font-family:Cinzel;color:var(--gold);font-size:2.5rem;margin-bottom:15px;\'>DOMINUS MANAGER</h1>'">
-      <p class="hero-subtitle" data-i18n="hero-sub">Simulación y gestión táctica de gladiadores romanos en PC.</p>
+      <img src="logo-game.png" alt="Dominus Manager" class="game-logo" onerror="this.outerHTML='<h1 style=\'font-family:Cinzel;color:var(--gold);font-size:2.8rem;margin-bottom:15px;\'>DOMINUS MANAGER</h1>'">
+      <p class="hero-subtitle" data-i18n="hero-sub">Simulación y gestión táctica de gladiadores romanos en PC</p>
     </section>
 
-    <!-- Tráiler -->
-    <div class="video-section">
+    <!-- Marco Cinematográfico de Tráiler con Empaque -->
+    <div class="trailer-wrapper">
+      <div class="trailer-header">
+        <div class="trailer-title">
+          <span class="live-dot"></span>
+          <span data-i18n="trailer-bar">DOMINUS MANAGER — REVELACIÓN OFICIAL</span>
+        </div>
+        <div class="trailer-badge">4K 60FPS</div>
+      </div>
       <div class="video-frame">
+        <!-- Sustituye dQw4w9WgXcQ por el ID real de tu tráiler de YouTube -->
         <iframe 
           src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1" 
-          title="Dominus Manager Trailer" 
+          title="Dominus Manager Official Trailer" 
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowfullscreen>
@@ -385,45 +493,48 @@
       </div>
     </div>
 
-    <!-- Botón Wishlist -->
+    <!-- Botón Steam Contundente -->
     <div class="cta-area">
       <a href="#" target="_blank" class="btn-steam">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
           <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.005.105.005.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 12-5.373 12-12S18.605 0 11.979 0z"/>
         </svg>
         <span data-i18n="steam-btn">Añadir a la lista de deseados en Steam</span>
       </a>
     </div>
 
-    <!-- Las 4 Características Clave -->
+    <!-- Mecánicas con Identidad Romana -->
     <section>
-      <div class="section-title" data-i18n="feat-tag">Mecánicas de Juego</div>
+      <div class="section-eyebrow" data-i18n="feat-tag">Mecánicas de Juego</div>
       <h2 class="section-heading" data-i18n="feat-title">Construye tu Dinastía en la Arena</h2>
       <div class="features-grid">
         <div class="feature-card">
+          <div class="feature-num">I</div>
           <h3 data-i18n="card-1-title">Gestión del Ludus</h3>
           <p data-i18n="card-1-desc">Construye barracones, armerías y enfermerías en una cuadrícula isométrica. Administra raciones, contratos médicos y salarios de entrenadores.</p>
         </div>
         <div class="feature-card">
+          <div class="feature-num">II</div>
           <h3 data-i18n="card-2-title">Combate Táctico por Estadísticas</h3>
           <p data-i18n="card-2-desc">Determina posturas de ataque, órdenes de flanqueo y tácticas previas. La IA resuelve el combate en tiempo real según los atributos y lesiones de cada guerrero.</p>
         </div>
         <div class="feature-card">
+          <div class="feature-num">III</div>
           <h3 data-i18n="card-3-title">Intrigas Políticas</h3>
           <p data-i18n="card-3-desc">Navega entre la aristocracia del Senado, el clero y los bajos fondos. Acepta sobornos, amaña enfrentamientos o sufre las consecuencias de desafiar a los nobles.</p>
         </div>
         <div class="feature-card">
+          <div class="feature-num">IV</div>
           <h3 data-i18n="card-4-title">Luchadores Procedimentales</h3>
-          <p data-i18n="card-4-desc">Cada gladiador posee rasgos únicos, moral, cicatrices permanentes y aspiraciones propias. Ninguna plantilla ni temporada se repite.</p>
+          <p data-i18n="card-4-desc">Cada gladiador posee rasgos únicos, moral dinámica, cicatrices permanentes y aspiraciones propias. Ninguna plantilla ni temporada se repite.</p>
         </div>
       </div>
     </section>
 
-    <!-- Sobre el Estudio -->
+    <!-- Sobre el Estudio (Sin texto duplicado) -->
     <section class="studio-card">
       <img src="logo-studio.png" alt="Baboon Dogma" class="studio-logo-inner" onerror="this.style.display='none'">
-      <div class="section-title" data-i18n="studio-tag">El Estudio</div>
-      <h2>BABOON DOGMA</h2>
+      <div class="section-eyebrow" data-i18n="studio-tag">El Estudio</div>
       <p data-i18n="studio-desc">
         Baboon Dogma es un nuevo estudio de videojuegos independiente nacido en España. Nos centramos en crear simulaciones profundas y juegos de estrategia para PC donde cada decisión mecánica cuenta, empezando por nuestro proyecto debut: Dominus Manager.
       </p>
@@ -445,8 +556,8 @@
 
     <!-- Contacto -->
     <section class="contact-card">
-      <div class="section-title" data-i18n="contact-tag">Contacto & Prensa</div>
-      <p data-i18n="contact-sub" style="color: var(--text-muted); font-size: 0.95rem;">Para prensa, claves de creadores o consultas de la comunidad:</p>
+      <div class="section-eyebrow" data-i18n="contact-tag">Contacto & Prensa</div>
+      <p data-i18n="contact-sub" style="color: var(--text-muted); font-size: 1rem;">Para prensa, creadores de contenido o consultas de la comunidad:</p>
       <div class="email-box">
         <span id="email-text">contact@baboondogma.com</span>
         <button class="btn-copy" onclick="copyEmail()" data-i18n="copy-btn">Copiar</button>
@@ -473,7 +584,8 @@
   <script>
     const translations = {
       es: {
-        "hero-sub": "Simulación y gestión táctica de gladiadores romanos en PC.",
+        "hero-sub": "Simulación y gestión táctica de gladiadores romanos en PC",
+        "trailer-bar": "DOMINUS MANAGER — REVELACIÓN OFICIAL",
         "steam-btn": "Añadir a la lista de deseados en Steam",
         "feat-tag": "Mecánicas de Juego",
         "feat-title": "Construye tu Dinastía en la Arena",
@@ -484,7 +596,7 @@
         "card-3-title": "Intrigas Políticas",
         "card-3-desc": "Navega entre la aristocracia del Senado, el clero y los bajos fondos. Acepta sobornos, amaña enfrentamientos o sufre las consecuencias de desafiar a los nobles.",
         "card-4-title": "Luchadores Procedimentales",
-        "card-4-desc": "Cada gladiador posee rasgos únicos, moral, cicatrices permanentes y aspiraciones propias. Ninguna plantilla ni temporada se repite.",
+        "card-4-desc": "Cada gladiador posee rasgos únicos, moral dinámica, cicatrices permanentes y aspiraciones propias. Ninguna plantilla ni temporada se repite.",
         "studio-tag": "El Estudio",
         "studio-desc": "Baboon Dogma es un nuevo estudio de videojuegos independiente nacido en España. Nos centramos en crear simulaciones profundas y juegos de estrategia para PC donde cada decisión mecánica cuenta, empezando por nuestro proyecto debut: Dominus Manager.",
         "badge-1-title": "100% INDIE",
@@ -494,13 +606,14 @@
         "badge-3-title": "PRIORIDAD AL SISTEMA",
         "badge-3-sub": "Sin micropagos",
         "contact-tag": "Contacto & Prensa",
-        "contact-sub": "Para prensa, claves de creadores o consultas de la comunidad:",
+        "contact-sub": "Para prensa, creadores de contenido o consultas de la comunidad:",
         "copy-btn": "Copiar",
         "copied": "¡Copiado!",
         "rights": "Todos los derechos reservados."
       },
       en: {
-        "hero-sub": "A Roman gladiator tactical management simulation for PC.",
+        "hero-sub": "A Roman gladiator tactical management simulation for PC",
+        "trailer-bar": "DOMINUS MANAGER — OFFICIAL REVEAL",
         "steam-btn": "Wishlist on Steam",
         "feat-tag": "Core Gameplay",
         "feat-title": "Forge Your Dynasty in the Arena",
@@ -517,11 +630,11 @@
         "badge-1-title": "100% INDIE",
         "badge-1-sub": "In-house Development",
         "badge-2-title": "PC EXCLUSIVE",
-        "badge-2-sub": "Pure Tactical Strategy",
+        "badge-2-sub": "Tactical Strategy",
         "badge-3-title": "SYSTEMS FIRST",
         "badge-3-sub": "Zero Pay-to-Win",
         "contact-tag": "Contact & Press",
-        "contact-sub": "For press inquiries, creator keys, or community questions:",
+        "contact-sub": "For press inquiries, content creators, or community questions:",
         "copy-btn": "Copy",
         "copied": "Copied!",
         "rights": "All rights reserved."
@@ -568,12 +681,12 @@
       height = canvas.height = window.innerHeight;
     });
 
-    const embers = Array.from({ length: 35 }, () => ({
+    const embers = Array.from({ length: 40 }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
       size: Math.random() * 2 + 1,
-      speedY: Math.random() * 0.8 + 0.3,
-      speedX: (Math.random() - 0.5) * 0.5,
+      speedY: Math.random() * 0.7 + 0.3,
+      speedX: (Math.random() - 0.5) * 0.4,
       opacity: Math.random() * 0.7 + 0.2
     }));
 
