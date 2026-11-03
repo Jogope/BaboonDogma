@@ -35,7 +35,6 @@
 
     body {
       background-color: var(--bg);
-      /* Halo ambiental superior para dar calidez y atmósfera de coliseo */
       background-image: 
         radial-gradient(circle at 50% 15%, rgba(139, 24, 29, 0.22) 0%, rgba(212, 175, 55, 0.08) 35%, transparent 70%),
         radial-gradient(circle at 50% 85%, rgba(212, 175, 55, 0.05) 0%, transparent 60%);
@@ -58,7 +57,7 @@
     }
 
     .container {
-      max-width: 1060px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 0 24px;
       position: relative;
@@ -209,7 +208,7 @@
       border: none;
     }
 
-    /* Botón Steam con Fuerza */
+    /* Botón Steam */
     .cta-area {
       text-align: center;
       margin-bottom: 70px;
@@ -240,7 +239,7 @@
       box-shadow: 0 18px 45px rgba(0,0,0,0.9), 0 0 40px rgba(212, 175, 55, 0.45);
     }
 
-    /* Separador Romano Ornamental */
+    /* Divisor Ornamental */
     .roman-divider {
       display: flex;
       align-items: center;
@@ -265,7 +264,7 @@
       box-shadow: 0 0 10px var(--gold-glow);
     }
 
-    /* Características con Esquinas Ornamentadas */
+    /* Cabeceras de Sección */
     .section-eyebrow {
       font-family: 'Cinzel', serif;
       color: var(--gold);
@@ -285,31 +284,33 @@
       text-shadow: 0 2px 15px rgba(0,0,0,0.8);
     }
 
+    /* Características (Cuadrícula 3x2) */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 26px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
     }
 
     .feature-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 34px 30px;
+      padding: 30px 24px;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
     }
 
-    /* Esquinas doradas estilo romano */
     .feature-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
       border-top: 2px solid var(--gold);
       border-left: 2px solid var(--gold);
     }
@@ -319,8 +320,8 @@
       position: absolute;
       bottom: 0;
       right: 0;
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
       border-bottom: 2px solid var(--gold);
       border-right: 2px solid var(--gold);
     }
@@ -333,7 +334,7 @@
 
     .feature-num {
       font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--gold);
       margin-bottom: 8px;
@@ -342,15 +343,148 @@
     .feature-card h3 {
       font-family: 'Cinzel', serif;
       color: #fff;
-      font-size: 1.35rem;
-      margin-bottom: 14px;
+      font-size: 1.25rem;
+      margin-bottom: 12px;
       letter-spacing: 0.5px;
+      line-height: 1.3;
     }
 
     .feature-card p {
-      font-size: 0.98rem;
+      font-size: 0.94rem;
       color: var(--text-muted);
-      line-height: 1.65;
+      line-height: 1.6;
+    }
+
+    /* Galería de Capturas (Cuadrícula 3x2) */
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .shot-card {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #0d0e14;
+      aspect-ratio: 16 / 9;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+      transition: all 0.3s ease;
+    }
+
+    .shot-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 14px;
+      height: 14px;
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+      z-index: 2;
+    }
+
+    .shot-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 14px;
+      height: 14px;
+      border-bottom: 2px solid var(--gold);
+      border-right: 2px solid var(--gold);
+      z-index: 2;
+    }
+
+    .shot-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .shot-card:hover {
+      border-color: var(--border-bright);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 45px rgba(0,0,0,0.8), 0 0 30px rgba(212, 175, 55, 0.2);
+    }
+
+    .shot-card:hover img {
+      transform: scale(1.05);
+      filter: brightness(1.08);
+    }
+
+    .shot-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(7, 7, 9, 0.9) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 12px 14px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+
+    .shot-card:hover .shot-overlay {
+      opacity: 1;
+    }
+
+    .shot-caption {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.8px;
+      color: var(--gold-light);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+      line-height: 1.2;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 4, 6, 0.94);
+      backdrop-filter: blur(8px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+
+    .lightbox-modal.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 92vw;
+      max-height: 88vh;
+      border-radius: 8px;
+      border: 1px solid var(--gold);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.95), 0 0 50px rgba(212, 175, 55, 0.3);
+      cursor: default;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      color: var(--gold-light);
+      font-size: 2.4rem;
+      font-weight: 300;
+      cursor: pointer;
+      line-height: 1;
+      transition: transform 0.2s;
+    }
+
+    .lightbox-close:hover {
+      transform: scale(1.2);
+      color: #fff;
     }
 
     /* Estudio */
@@ -478,8 +612,14 @@
       transform: translateY(-2px);
     }
 
+    @media (max-width: 992px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .screenshots-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
     @media (max-width: 768px) {
       .features-grid { grid-template-columns: 1fr; }
+      .screenshots-grid { grid-template-columns: 1fr; }
       .badges { flex-direction: column; gap: 20px; }
       footer { flex-direction: column; gap: 18px; text-align: center; }
       .header-logo { height: 48px; }
@@ -508,7 +648,7 @@
       <p class="hero-subtitle" data-i18n="hero-sub">A Roman gladiator tactical management simulation for PC</p>
     </section>
 
-    <!-- Tráiler Oficial con tu nuevo enlace -->
+    <!-- Tráiler Oficial -->
     <div class="trailer-wrapper">
       <div class="trailer-header">
         <div class="trailer-title">
@@ -518,7 +658,6 @@
         <div class="trailer-badge">4K 60FPS</div>
       </div>
       <div class="video-frame">
-        <!-- Vídeo oficial de YouTube -->
         <iframe 
           src="https://www.youtube.com/embed/JTa1_sTM0Nk?rel=0&modestbranding=1" 
           title="Dominus Manager Official Reveal Trailer" 
@@ -544,7 +683,7 @@
       <div class="divider-diamond"></div>
     </div>
 
-    <!-- Mecánicas de Juego -->
+    <!-- 6 Mecánicas de Juego -->
     <section>
       <div class="section-eyebrow" data-i18n="feat-tag">Core Gameplay</div>
       <h2 class="section-heading" data-i18n="feat-title">Forge Your Dynasty in the Arena</h2>
@@ -568,6 +707,65 @@
           <div class="feature-num">IV</div>
           <h3 data-i18n="card-4-title">Procedural Gladiators</h3>
           <p data-i18n="card-4-desc">Every warrior features procedural traits, dynamic morale, permanent scars, and individual goals. No two rosters or seasons are ever the same.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">V</div>
+          <h3 data-i18n="card-5-title">Tournaments & Exhibitions</h3>
+          <p data-i18n="card-5-desc">Register champions in lethal underground fight nights, state funeral duels, and grand Colosseum games for immense purses and glory.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">VI</div>
+          <h3 data-i18n="card-6-title">Narrative Dilemmas</h3>
+          <p data-i18n="card-6-desc">Encounter tavern contracts, guild bribes, and shady propositions. Every choice has a lasting price in gold, infamy, or gladiator blood.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divisor Ornamental -->
+    <div class="roman-divider">
+      <div class="divider-diamond"></div>
+    </div>
+
+    <!-- 6 Capturas de Pantalla -->
+    <section>
+      <div class="section-eyebrow" data-i18n="gallery-tag">Gallery</div>
+      <h2 class="section-heading" data-i18n="gallery-title">The Sand & Steel in Action</h2>
+      <div class="screenshots-grid">
+        <div class="shot-card" onclick="openLightbox('screen-1.jpg')">
+          <img src="screen-1.jpg" alt="Ludus Isometric Construction" onerror="this.src='logo-game.png'; this.style.objectFit='contain';">
+          <div class="shot-overlay">
+            <span class="shot-caption" data-i18n="shot-1">Ludus Construction & Grid</span>
+          </div>
+        </div>
+        <div class="shot-card" onclick="openLightbox('screen-2.jpg')">
+          <img src="screen-2.jpg" alt="Gladiator Detailed Roster" onerror="this.src='logo-game.png'; this.style.objectFit='contain';">
+          <div class="shot-overlay">
+            <span class="shot-caption" data-i18n="shot-2">Gladiator Records & Attributes</span>
+          </div>
+        </div>
+        <div class="shot-card" onclick="openLightbox('screen-3.jpg')">
+          <img src="screen-3.jpg" alt="Roman Politics and Factions" onerror="this.src='logo-game.png'; this.style.objectFit='contain';">
+          <div class="shot-overlay">
+            <span class="shot-caption" data-i18n="shot-3">Roman Politics & Factions</span>
+          </div>
+        </div>
+        <div class="shot-card" onclick="openLightbox('screen-4.jpg')">
+          <img src="screen-4.jpg" alt="Arena Showdown" onerror="this.src='logo-game.png'; this.style.objectFit='contain';">
+          <div class="shot-overlay">
+            <span class="shot-caption" data-i18n="shot-4">3D Simulated Arena Combat</span>
+          </div>
+        </div>
+        <div class="shot-card" onclick="openLightbox('screen-5.jpg')">
+          <img src="screen-5.jpg" alt="Tournaments and Fight Registrations" onerror="this.src='logo-game.png'; this.style.objectFit='contain';">
+          <div class="shot-overlay">
+            <span class="shot-caption" data-i18n="shot-5">Tournament & Match Registrations</span>
+          </div>
+        </div>
+        <div class="shot-card" onclick="openLightbox('screen-6.jpg')">
+          <img src="screen-6.jpg" alt="Narrative Events and Contracts" onerror="this.src='logo-game.png'; this.style.objectFit='contain';">
+          <div class="shot-overlay">
+            <span class="shot-caption" data-i18n="shot-6">Narrative Events & Moral Choices</span>
+          </div>
         </div>
       </div>
     </section>
@@ -626,10 +824,17 @@
           <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
         <a href="#" target="_blank" aria-label="Steam">
-          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.005.105.005.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 12-5.373 12-12S18.605 0 11.979 0z"/></svg>
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.005.105.005.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 12-5.373 12-12S18.605 0 11.979 0z"/>
+        </svg>
         </a>
       </div>
     </footer>
+  </div>
+
+  <!-- Visor Lightbox -->
+  <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" class="lightbox-content" src="" alt="Enlarged screenshot" onclick="event.stopPropagation()">
   </div>
 
   <script>
@@ -648,6 +853,18 @@
         "card-3-desc": "Navigate the Senate, the priesthood, and the criminal underworld. Accept bribes, rig matchings, or face retribution for defying the patricians.",
         "card-4-title": "Procedural Gladiators",
         "card-4-desc": "Every warrior features procedural traits, dynamic morale, permanent scars, and individual goals. No two rosters or seasons are ever the same.",
+        "card-5-title": "Tournaments & Exhibitions",
+        "card-5-desc": "Register champions in lethal underground fight nights, state funeral duels, and grand Colosseum games for immense purses and glory.",
+        "card-6-title": "Narrative Dilemmas",
+        "card-6-desc": "Encounter tavern contracts, guild bribes, and shady propositions. Every choice has a lasting price in gold, infamy, or gladiator blood.",
+        "gallery-tag": "Gallery",
+        "gallery-title": "The Sand & Steel in Action",
+        "shot-1": "Ludus Construction & Grid",
+        "shot-2": "Gladiator Records & Attributes",
+        "shot-3": "Roman Politics & Factions",
+        "shot-4": "3D Simulated Arena Combat",
+        "shot-5": "Tournaments & Match Registrations",
+        "shot-6": "Narrative Events & Moral Choices",
         "studio-tag": "The Studio",
         "studio-desc": "Baboon Dogma is a new independent game studio based in Spain. We focus on crafting deep simulations and PC strategy games where mechanics and player decisions truly matter, starting with our debut title: Dominus Manager.",
         "badge-1-title": "100% INDIE",
@@ -676,6 +893,18 @@
         "card-3-desc": "Navega entre la aristocracia del Senado, el clero y los bajos fondos. Acepta sobornos, amaña enfrentamientos o sufre las consecuencias de desafiar a los nobles.",
         "card-4-title": "Luchadores Procedimentales",
         "card-4-desc": "Cada gladiador posee rasgos únicos, moral dinámica, cicatrices permanentes y aspiraciones propias. Ninguna plantilla ni temporada se repite.",
+        "card-5-title": "Torneos y Exhibiciones",
+        "card-5-desc": "Inscribe a tus campeones en duelos por deudas clandestinas, ceremonias fúnebres de Estado y grandes torneos para amasar denarios y fama.",
+        "card-6-title": "Dilemas Morales",
+        "card-6-desc": "Afronta pactos oscuros en tabernas, sobornos de gremios y peticiones turbias. Toda decisión exige un precio en oro, infamia o sangre.",
+        "gallery-tag": "Galería",
+        "gallery-title": "La Arena y el Acero en Acción",
+        "shot-1": "Construcción y Cuadrícula del Ludus",
+        "shot-2": "Ficha y Atributos de Gladiadores",
+        "shot-3": "Intrigas Políticas y Facciones",
+        "shot-4": "Combate Simulado en la Arena 3D",
+        "shot-5": "Inscripción en Torneos y Duelos",
+        "shot-6": "Eventos Narrativos y Decisiones",
         "studio-tag": "El Estudio",
         "studio-desc": "Baboon Dogma es un nuevo estudio de videojuegos independiente nacido en España. Nos centramos en crear simulaciones profundas y juegos de estrategia para PC donde cada decisión mecánica cuenta, empezando por nuestro proyecto debut: Dominus Manager.",
         "badge-1-title": "100% INDIE",
@@ -726,6 +955,22 @@
         setTimeout(() => { btn.innerText = originalText; }, 2000);
       });
     }
+
+    // Lightbox Modal
+    function openLightbox(src) {
+      const modal = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      modal.classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
 
     // Partículas de ascuas
     const canvas = document.getElementById('embers-canvas');
